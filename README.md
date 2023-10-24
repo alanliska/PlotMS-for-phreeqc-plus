@@ -1,20 +1,21 @@
-# PlotMS for QCxMS
+# This is the PlotMS fork used in the mobile app PHREEQC plus
 
-#### This is the PlotMS fork used in the mobile app PHREEQC plus ####
-
-# Changes in this fork #
+## Changes in this fork
 
 * alternative Makefile (for cross-compilation)
-* dependencies have their own repositories and open source licenses - please check the original repo
-https://github.com/qcxms/PlotMS
+* dependencies have their own repositories and open source licenses - please check the original repo https://github.com/qcxms/PlotMS
 
-# Compilation #
+## Compilation
 
-make
+```bash
+$ make
+```
 
 The provided Makefile refers to aarch64 version. For the others (arm, x86, x86_64) change the compiler name. 
 
-####
+# ORIGINAL DESCRIPTION:
+
+# PlotMS for QCxMS
 
 **Plot** **M**ass **S**pectra (PlotMS) plotting program for the [QCxMS program](https://github.com/qcxms/QCxMS). 
 
