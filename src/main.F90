@@ -236,14 +236,6 @@ program plotms
     call readl(arg,xx,nn)
     total_charge = real(xx(1),wp)
 
-     ! print version of program
-   case("--version")
-    call print_version
-    stop
-
-     ! print help
-    case("-h","--help")
-    call print_help
 
     case default
       error stop ' -- Unrecognized Keyword -- '
@@ -1122,6 +1114,10 @@ il:   do j = 1, new_length_thr
     !            exp_entries, exp_mass, exp_int,score,tmax)
     call match(added_thr_masses, added_thr_intensities, new_length_thr, &
                 new_length_exp, added_exp_masses, added_exp_intensities,score,tmax)
+                write(*,*) "added_thr_masses, added_thr_intensities, new_length_thr, &
+                new_length_exp, added_exp_masses, added_exp_intensities,score,tmax"
+                  write(*,*) added_thr_masses, added_thr_intensities, new_length_thr, &
+                new_length_exp, added_exp_masses, added_exp_intensities,score,tmax
     write(*,*)
     write(*,*)"!!!!!!!!!!!!!!!!!!!!!!! "
     write(*,*)"  Matching score:  "
@@ -1191,8 +1187,7 @@ subroutine match(added_masses, added_intensities, new_length, &
   allocate(w_exp(exp_entries))
   norm = 0.0_wp
   do i = 1, exp_entries
-   ! w_exp(i) = exp_mass(i)**2 * exp_int(i)**0.6_wp
-       w_exp(i) = exp_mass(i)**3 * exp_int(i)**0.6_wp
+    w_exp(i) = exp_mass(i)**2 * exp_int(i)**0.6_wp
     norm = norm + w_exp(i)**2
   enddo 
 
@@ -1206,8 +1201,7 @@ subroutine match(added_masses, added_intensities, new_length, &
   allocate(w_thr(new_length))
   norm = 0.0_wp
   do j = 1, new_length
-    !w_thr(j) = (added_masses(j))**2 * ( added_intensities(j) )**0.6_wp 
-     w_thr(j) = (added_masses(j))**3 * ( added_intensities(j) )**0.6_wp 
+    w_thr(j) = (added_masses(j))**2 * ( added_intensities(j) )**0.6_wp 
     norm = norm + w_thr(j)**2
   enddo 
 
@@ -1338,32 +1332,6 @@ subroutine calcfr(pp,pair,sum4)
   
 end subroutine calcfr
 
-
-subroutine print_help()
-implicit none
-
-      write(*,*)
-      write(*,'(1x, ''usage        :'')')
-      write(*,'(1x, ''plotms [options]'')')
-      write(*,*)
-      write(*,'(1x, ''plotms needs a qcxms.res qcxms_cid.res tmpqcxms.res or tmpqcxms_cid.res file from a qcxms calculation in the current directory.'')')
-      write(*,*)
-      write(*,'(/,1x,''command line arguments'')')
-      write(*,'(5x,''-a: count charges from -1000 (cthr) to cthr2'')')
-      write(*,'(5x,''-v: print spectra "mass % intensity  counts   Int. exptl" to stdout;'')')
-      write(*,'(5x,''   with "Int. exptl" (experimental) taken from exp.dat but not all'')') 
-      write(*,'(5x,''   exp peaks are exported if no theoretical counterpart exists'')')
-      write(*,'(5x,''-f <name_of_res_file>: give name of res file'')')
-      write(*,'(5x,''-t: couting ions with charge x to y (give the value, e.g. "-t 1 2"  for charge 1 to 2)'')')
-      write(*,'(5x,''-w [real]: broadening the charges by an SD '')')
-      write(*,'(5x,''-s: Take only secondary and tertiary fragmentations (give the value, e.g. "-s 2" for secondary)'')')
-      write(*,'(5x,''-m [int] set minimum value for m/z, so 100% value will be calc. for higher values (CID)'')')
-      write(*,'(5x,''-p calculate NO isotope pattern, highest peak of isotope pattern is used'')')
-      write(*,'(5x,''-i [real]: set minimum intensity that is considered in rel. intensity percent'')')
-      write(*,'(5x,''-e: provide exp. input file (in .csv format)'')')
-      write(*,'(5x,''--version: print version of this program'')')
-      stop '   [-h] displayed. exit.'
-end subroutine print_help
 
 ! Get the absolute path to file
 ! Note, this function replaces shell tilde ~/ with the explicit home dir string.
