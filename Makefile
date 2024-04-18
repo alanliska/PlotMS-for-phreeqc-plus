@@ -1,6 +1,6 @@
-FC = gfortran
-F77 = gfortran
-CC = gcc
+FC = i686-linux-gnu-gfortran
+F77 = i686-linux-gnu-gfortran
+CC = i686-linux-gnu-gcc
 
 FPFLAGS = -DWITH_JSON=0
 
@@ -10,11 +10,11 @@ F77FLAGS = -ffree-line-length-none -fbacktrace -O2 -g -DNDEBUG -pie -fdefault-re
 
 CFLAGS= -O2 -g -DNDEBUG -fPIC -pie
 
-LIB = ./libplotms.a ../libs-aarch64/liblapack.a ./libmctc.a ../libs-aarch64/libblas.a
+LIB = ./libplotms.a ../../libs-x86/liblapack.a ./libmctc.a ../../libs-x86/libblas.a
 
 INC = -I./mctc-lib-src/include/mctc -I./mctc-lib-src/include -I.
 
-LDFLAGS = -pie -static-libgfortran -fPIC
+LDFLAGS = -pie -static -fPIC
 	
 MCTCLIB = mctc-lib-src/src/mctc/env/accuracy.o \
 mctc-lib-src/src/mctc/env/error.o \
@@ -86,7 +86,7 @@ plotms:  $(PLOTMS)
 	$(FC) $(FFLAGS) $(PLOTMS) $(LDFLAGS) -o plotms $(LIB) 
 	
 strip:
-	strip plotms
+	i686-linux-gnu-strip plotms
 	
 clean: 
 	find . -name "*.o" -type f -delete
