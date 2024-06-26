@@ -11,7 +11,7 @@
 $ make
 ```
 
-The provided Makefile refers to x86 version. For the others (arm, aarch64, x86_64) change the compiler name. 
+The provided Makefile refers to x86 version. For the others (arm, aarch64, x86_64) change the compiler name. Substitute the prefix by the actual cross-compiler name. 
 
 # ORIGINAL DESCRIPTION:
 

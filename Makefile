@@ -1,6 +1,6 @@
-FC = i686-linux-gnu-gfortran
-F77 = i686-linux-gnu-gfortran
-CC = i686-linux-gnu-gcc
+FC = /path/to/cross-compiler/prefix-gfortran
+F77 = /path/to/cross-compiler/prefix-gfortran
+CC = /path/to/cross-compiler/prefix-gcc
 
 FPFLAGS = -DWITH_JSON=0
 
@@ -86,7 +86,7 @@ plotms:  $(PLOTMS)
 	$(FC) $(FFLAGS) $(PLOTMS) $(LDFLAGS) -o plotms $(LIB) 
 	
 strip:
-	i686-linux-gnu-strip plotms
+	/path/to/cross-compiler/prefix-strip plotms
 	
 clean: 
 	find . -name "*.o" -type f -delete
