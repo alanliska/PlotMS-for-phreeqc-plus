@@ -14,7 +14,7 @@ LIB = ./libplotms.a ../../libs-x86/liblapack.a ./libmctc.a ../../libs-x86/libbla
 
 INC = -I./mctc-lib-src/include/mctc -I./mctc-lib-src/include -I.
 
-LDFLAGS = -pie -static -fPIC
+LDFLAGS = -pie -static -fPIC -Wl,-z,max-page-size=16384
 	
 MCTCLIB = mctc-lib-src/src/mctc/env/accuracy.o \
 mctc-lib-src/src/mctc/env/error.o \

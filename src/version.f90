@@ -18,12 +18,6 @@ subroutine print_version
   write(*,'(6x,''* * * * * * * * * * * * * * * * * *'')')
   write(*,'(6x,''   Contributor:  C.Bauer, J. Gorges, T.Kind   '')')
   write(*,*)
-  write(*,'('' Special version for Linux (Debian, x86, pie, static) '')')
-  write(*,'('' linked with high-performance BLAS and LAPACK libraries (for Android) '')')
-  write(*,'('' tailored to run on x86_64 powered Android devices '')')
-  write(*,'('' compiled by A. Liska & V. Ruzickova '')')
-  write(*,'('' on April 16, 2024. '')')
-  write(*,*)
 
 end subroutine print_version
 end module version
